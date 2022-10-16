@@ -1,13 +1,7 @@
-from alpine:latest
-RUN apk add --no-cache py3-pip \
-    && pip3 install --upgrade pip
-
-WORKDIR /app
+FROM python:alpine3.7
 COPY . /app
-
-RUN pip3 --no-cache-dir install -r requirements.txt
-
-EXPOSE 5000
-
-ENTRYPOINT ["python3"]
-CMD ["helloworld.py"]
+WORKDIR /app
+RUN pip install -r requirements.txt
+EXPOSE 5001
+ENTRYPOINT [ "python" ]
+CMD [ "demo.py" ]
